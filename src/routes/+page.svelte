@@ -15,25 +15,33 @@
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
-		font-family: system-ui, sans-serif;
+		font-family: 'Georgia', serif;
 		text-align: center;
-		background: linear-gradient(135deg, #f0f0f0, #c0c0f0);
+		background-color: #f9f9f9;
+		color: #333;
 	}
 	h1 {
 		font-size: 3rem;
 		margin-bottom: 1rem;
+		color: #901a1e;
 	}
 	p {
 		font-size: 1.5rem;
 		margin-bottom: 2rem;
+		color: #666666;
 	}
 	button {
 		padding: 0.5rem 1rem;
 		font-size: 1rem;
 		cursor: pointer;
 		border: none;
-		background-color: #6200ee;
+		background-color: #901a1e;
 		color: white;
 		border-radius: 0.5rem;
+		border-radius: 2px;
+		transition: background-color 0.2s;
+	}
+	button:hover {
+		background-color: #721417;
 	}
 </style>
