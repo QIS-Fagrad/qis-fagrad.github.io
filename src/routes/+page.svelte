@@ -3,9 +3,9 @@
 </script>
 
 <main>
-	<h1>Welcome to My Landing Page</h1>
+	<h1>Welcome to The QIS Fagråd</h1>
 	<p>Hello!</p>
-	<button on:click={() => alert('Thanks for visiting!')}> Click me </button>
+	<button on:click={() => alert('Thanks for visiting Bjarne!')}> Click me </button>
 </main>
 
 <style>
