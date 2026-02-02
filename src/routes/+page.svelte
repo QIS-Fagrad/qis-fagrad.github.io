@@ -5,7 +5,6 @@
 <main>
 	<div class="tape">WORK IN PROGRESS</div>
 	<h1>Welcome to The QIS Fagråd</h1>
-	<p>Hello!</p>
 	<button on:click={() => alert('Thanks for visiting!')}> Click me </button>
 </main>
 
@@ -25,11 +24,6 @@
 		font-size: 3rem;
 		margin-bottom: 1rem;
 		color: #901a1e;
-	}
-	p {
-		font-size: 1.5rem;
-		margin-bottom: 2rem;
-		color: #666666;
 	}
 	button {
 		padding: 0.5rem 1rem;
