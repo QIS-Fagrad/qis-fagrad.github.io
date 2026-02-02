@@ -7,8 +7,8 @@ This website is built with [SvelteKit](https://svelte.dev/tutorial/kit/introduci
 1. [Install Bun](https://bun.com/get)
 
 ```sh
-curl -fsSL https://bun.sh/install | bash # linux/macoso
-powershell -c "irm bun.sh/install.ps1 | iex" # windows  
+curl -fsSL https://bun.sh/install | bash # linux/macos
+# powershell -c "irm bun.sh/install.ps1 | iex" # windows  
 ````
 
 2. Install dependencies
