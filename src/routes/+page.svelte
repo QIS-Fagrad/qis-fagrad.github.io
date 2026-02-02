@@ -3,9 +3,10 @@
 </script>
 
 <main>
+	<div class="tape">WORK IN PROGRESS</div>
 	<h1>Welcome to The QIS Fagråd</h1>
 	<p>Hello!</p>
-	<button on:click={() => alert('Thanks for visiting Bjarne!')}> Click me </button>
+	<button on:click={() => alert('Thanks for visiting!')}> Click me </button>
 </main>
 
 <style>
@@ -43,5 +44,32 @@
 	}
 	button:hover {
 		background-color: #721417;
+	}
+
+	.tape {
+		position: fixed;
+		top: 45%;
+		left: -25%;
+		width: 150%;
+		padding: 1rem 0;
+		text-align: center;
+
+		background: repeating-linear-gradient(
+			45deg,
+			rgba(0, 0, 0, 0.25),
+			rgba(0, 0, 0, 0.25) 10px,
+			rgba(255, 235, 59, 0.35) 10px,
+			rgba(255, 235, 59, 0.35) 20px
+		);
+
+		color: #000;
+		font-size: 2rem;
+		letter-spacing: 0.3em;
+		font-family: monospace;
+		font-weight: bold;
+
+		transform: rotate(-10deg);
+		pointer-events: none;
+		z-index: 9999;
 	}
 </style>
