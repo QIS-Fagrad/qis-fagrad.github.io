@@ -27,5 +27,5 @@ bun dev
 
 ```sh
 bun run build && bun run deploy
-```g
+```
 
