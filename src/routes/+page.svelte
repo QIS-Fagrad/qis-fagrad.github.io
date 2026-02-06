@@ -5,7 +5,7 @@
 <main>
 	<Nav></Nav>
 	<h1>Welcome to The QIS Fagråd</h1>
-	<button on:click={() => alert('Thanks for visiting!')}> Click me </button>
+	<button on:click={() => alert('Thank you for visiting!')}> Click me </button>
 </main>
 
 <style>
