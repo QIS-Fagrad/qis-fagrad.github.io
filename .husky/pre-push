@@ -1,0 +1,15 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+BRANCH="$(git symbolic-ref --short HEAD)"
+
+PATTERN="^(feat|fix|chore|refactor|docs|test|perf)/[a-z0-9-]+$"
+
+if ! echo "$BRANCH" | grep -Eq "$PATTERN"; then
+  echo "❌ Invalid branch name: $BRANCH"
+  echo "Expected pattern: <type>/<description>"
+  echo "Examples:"
+  echo "  feat/add-login"
+  echo "  fix/button-color"
+  exit 1
+fi
