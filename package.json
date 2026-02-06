@@ -15,8 +15,7 @@
 	},
 	"lint-staged": {
 		"*.{js,ts,html,css,svelte}": [
-			"bun lint --write",
-			"git add"
+			"bun lint --write"
 		]
 	},
 	"devDependencies": {
