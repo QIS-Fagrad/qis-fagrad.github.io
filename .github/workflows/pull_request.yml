@@ -1,0 +1,32 @@
+name: 'CI: Lint & Build'
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Bun
+        uses: oven-sh/bun@v1
+        with:
+          bun-version: '1.0.0'
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run Bun lint
+        run: bun lint
+
+      - name: Run Svelte Check
+        run: bun check
+
+      - name: Run Bun Build
+        run: bun run build

@@ -28,9 +28,8 @@ bun install
 bun dev
 ```
 
-4. Build and publish to GitHub Pages
+4. Build and preview the static website locally
 
 ```sh
-bun run build && bun run deploy
+bun run build && bun run preview
 ```
-
