@@ -1,12 +1,20 @@
 <!-- Nav.svelte -->
+<script>
+	const navItems = [
+		{ href: '/', label: 'Home' },
+		{ href: '/', label: 'Who We Are' },
+		{ href: '/', label: 'QIS Handbook' },
+		{ href: '/', label: 'Events' },
+		{ href: '/', label: 'Initiatives' },
+		{ href: '/', label: 'Project Catalogue' },
+		{ href: '/', label: 'Contact' }
+	];
+</script>
+
 <nav class="nav">
-	<a href="/">Home</a>
-	<a href="/about">Who We Are</a>
-	<a href="/qis-handbook">QIS Handbook</a>
-	<a href="/events">Events</a>
-	<a href="/initiatives">Initiatives</a>
-	<a href="/project-catalogue">Project Catalogue</a>
-	<a href="/blog">Contact</a>
+	{#each navItems as { href, label }}
+		<a {href}>{label}</a>
+	{/each}
 </nav>
 
 <style>
