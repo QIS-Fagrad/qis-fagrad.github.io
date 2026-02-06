@@ -1,29 +1,26 @@
 <script lang="ts">
-	import Nav from '$lib/components/Nav.svelte';
+	let _ = 'Visitor';
 </script>
 
 <main>
-	<Nav></Nav>
+	<div class="tape">WORK IN PROGRESS</div>
 	<h1>Welcome to The QIS Fagråd</h1>
-	<button on:click={() => alert('Thank you for visiting!')}> Click me </button>
+	<button on:click={() => alert('Thanks for visiting!')}> Click me </button>
 </main>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
-
 	main {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
-		font-family: 'Google Sans', serif;
+		font-family: 'Georgia', serif;
 		text-align: center;
 		background-color: #f9f9f9;
 		color: #333;
 	}
 	h1 {
-		font-weight: bold;
 		font-size: 3rem;
 		margin-bottom: 1rem;
 		color: #901a1e;
@@ -41,5 +38,32 @@
 	}
 	button:hover {
 		background-color: #721417;
+	}
+
+	.tape {
+		position: fixed;
+		top: 45%;
+		left: -25%;
+		width: 150%;
+		padding: 1rem 0;
+		text-align: center;
+
+		background: repeating-linear-gradient(
+			45deg,
+			rgba(0, 0, 0, 0.25),
+			rgba(0, 0, 0, 0.25) 10px,
+			rgba(255, 235, 59, 0.35) 10px,
+			rgba(255, 235, 59, 0.35) 20px
+		);
+
+		color: #000;
+		font-size: 2rem;
+		letter-spacing: 0.3em;
+		font-family: monospace;
+		font-weight: bold;
+
+		transform: rotate(-10deg);
+		pointer-events: none;
+		z-index: 9999;
 	}
 </style>
