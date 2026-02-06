@@ -1,8 +1,8 @@
-name: Deploy Bun with GitHub Pages dependencies preinstalled
+name: Deploy Website
 
 on:
   push:
-    branches: ["master"]
+    branches: ['master']
 
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
