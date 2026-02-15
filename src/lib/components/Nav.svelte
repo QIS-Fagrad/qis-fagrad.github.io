@@ -2,12 +2,12 @@
 <script>
 	const navItems = [
 		{ href: '/', label: 'Home' },
-		{ href: '/', label: 'Who We Are' },
-		{ href: '/', label: 'QIS Handbook' },
-		{ href: '/', label: 'Events' },
-		{ href: '/', label: 'Initiatives' },
-		{ href: '/', label: 'Project Catalogue' },
-		{ href: '/', label: 'Contact' }
+		{ href: '/who-we-are', label: 'Who We Are' },
+		{ href: '/qis-handbook', label: 'QIS Handbook' },
+		{ href: '/events', label: 'Events' },
+		{ href: '/initiatives', label: 'Initiatives' },
+		{ href: '/project-catalogue', label: 'Project Catalogue' },
+		{ href: '/contact', label: 'Contact' }
 	];
 </script>
 
@@ -19,45 +19,25 @@
 
 <style>
 	.nav {
-		background: red;
+		background: #901a1e;
 		position: fixed;
-		top: 0px;
+		top: 0;
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		background: #901a1e;
 	}
 
 	a {
 		display: inline-block;
 		padding: 0.7em 0.8em;
 		color: white;
-		height: 100%;
 		text-decoration: none;
-		position: relative;
-		overflow: hidden;
-		transition: color 0.3s ease;
-	}
-
-	a::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #f9f9f9;
-		transform: scaleY(0);
-		transform-origin: bottom;
-		transition: transform 0.3s ease;
-		z-index: -1;
-	}
-
-	a:hover::before {
-		transform: scaleY(1);
+		transition: color 0.6s ease;
+		transition: background-color 0.6s ease;
 	}
 
 	a:hover {
-		color: #901a1e;
+		color: #901a1e; /* or any color you want on hover */
+		background-color: #f9f9f9;
 	}
 </style>
