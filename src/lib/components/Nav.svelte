@@ -20,11 +20,12 @@
 <style>
 	.nav {
 		background: #901a1e;
-		position: fixed;
+		position: relative;
 		top: 0;
 		width: 100%;
 		display: flex;
 		justify-content: center;
+		margin-bottom: 4em;
 	}
 
 	a {
