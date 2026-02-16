@@ -37,7 +37,7 @@
 	}
 
 	a:hover {
-		color: #901a1e; /* or any color you want on hover */
+		color: #901a1e;
 		background-color: #f9f9f9;
 	}
 </style>
