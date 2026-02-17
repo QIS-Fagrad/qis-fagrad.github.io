@@ -1,17 +1,73 @@
 <script lang="ts">
-	const members = [
-		{ name: 'João Ramos', role: 'President', email: 'joao.ramos@nbi.ku.dk' },
-		{ name: 'Veronika Postgaard', role: 'Treasurer' },
-		{ name: 'Johan Palm', role: 'Head of Public Relations' },
-		{ name: 'Bjarne Schümann', role: 'Head of Academic Committee' },
-		{ name: 'David Ulrich', role: 'Head of Social Committee' },
-		{ name: 'Enrique Escobar', role: 'Head of QKE Committee' }
-	].sort((a, b) => a.name.localeCompare(b.name));
+	enum AcademicYear {
+		Y24_25 = '2024/2025',
+		Y25_26 = '2025/2026'
+	}
+
+	type Member = { name: string; email?: string };
+
+	const members: Record<string, Member> = Object.fromEntries(
+		[
+			{ name: 'João Ramos', email: 'joao.ramos@nbi.ku.dk' },
+			{ name: 'Veronika Postgaard', email: 'rdz524@alumni.ku.dk' },
+			{ name: 'Johan Palm', email: 'johan.palm2000@gmail.com' },
+			{ name: 'Bjarne Schümann', email: 'bjarne.schuemann@gmx.de' },
+			{ name: 'David Ulrich', email: 'wfd255@alumni.ku.dk' },
+			{ name: 'Enrique Escobar', email: 'enriquees.fdez@gmail.com' },
+			{ name: 'Jan Ljubas', email: 'jan.ljubas@gmail.com' },
+			{ name: 'Tommaso Pasini' },
+			{ name: 'Christina Fouseki' },
+			{ name: 'Nimrod Dishi' },
+			{ name: 'Christina Avram' },
+			{ name: 'Hans Tønning' },
+			{ name: 'Marcus Jensen' },
+			{ name: 'Sebastian Nilausen' },
+			{ name: 'Maddi Elorza', email: 'maddiberasategi99@outlook.es' },
+			{ name: 'Asger Viggo', email: 'asgervkn@gmail.com' },
+			{ name: 'Emil Henningsen', email: 'emilhenningsen3@gmail.com' },
+			{ name: 'Eleni Karydi', email: 'eleni.fennec@gmail.com' }
+		].map((member) => [member.name, member])
+	);
+
+	const roles: Record<AcademicYear, { name: string; role: string }[]> = {
+		[AcademicYear.Y25_26]: [
+			{ name: 'Bjarne Schümann', role: 'Head of Academic Committee' },
+			{ name: 'Christina Avram', role: 'Vice-Head of Social Committee' },
+			{ name: 'Christina Fouseki', role: 'Vice-Head of QKE' },
+			{ name: 'David Ulrich', role: 'Head of Social Committee' },
+			{ name: 'Enrique Escobar', role: 'Head of QKE Committee' },
+			{ name: 'Hans Tønning', role: 'Vice-Treasurer' },
+			{ name: 'Jan Ljubas', role: 'Senior Advisor' },
+			{ name: 'João Ramos', role: 'President' },
+			{ name: 'Johan Palm', role: 'Head of Public Relations' },
+			{ name: 'Marcus Jensen', role: 'Vice-Head of Social Committee' },
+			{ name: 'Nimrod Dishi', role: 'Vice-President' },
+			{ name: 'Sebastian Nilausen', role: 'Vice-Treasurer' },
+			{ name: 'Tommaso Pasini', role: 'Vice-Head of Academic Committee' },
+			{ name: 'Veronika Postgaard', role: 'Treasurer' }
+		],
+
+		[AcademicYear.Y24_25]: [
+			{ name: 'Asger Viggo', role: 'Head of Public Relations' },
+			{ name: 'Bjarne Schümann', role: 'Vice-Head of Academic Committee' },
+			{ name: 'David Ulrich', role: 'Vice-Head of Social Committee' },
+			{ name: 'Eleni Karydi', role: 'President' },
+			{ name: 'Emil Henningsen', role: 'Treasurer' },
+			{ name: 'Enrique Escobar', role: 'Contributor' },
+			{ name: 'Jan Ljubas', role: 'Head of Social Committee' },
+			{ name: 'João Ramos', role: 'Vice-President' },
+			{ name: 'Johan Palm', role: 'Vice-Head of Public Relations' },
+			{ name: 'Maddi Elorza', role: 'Head of Academic Committee' },
+			{ name: 'Veronika Postgaard', role: 'Vice-Treasurer' }
+		]
+	};
+
+	let selectedYear: AcademicYear = AcademicYear.Y25_26;
 </script>
 
 <h1>Who we are</h1>
 
-<div class="cards mr-auto mb-16 ml-auto">
+<div class="cards mt-8 mr-auto mb-16 ml-auto">
 	<section class="card">
 		<h2>Representation</h2>
 		<p>
@@ -37,25 +93,24 @@
 	</section>
 </div>
 
-<div class="mb-8 flex w-full items-center justify-between pr-5 pl-5">
-	<!-- Empty left slot -->
-	<div class="flex w-24 items-center"></div>
+<div class="relative mt-16 mb-8 h-12 w-full">
+	<!-- Heading centered -->
+	<h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-semibold">
+		Meet our team
+	</h1>
 
-	<!-- Centered heading -->
-	<h1 class="text-center text-3xl font-semibold">Meet our team</h1>
-
-	<!-- Right-aligned dropdown -->
-	<div>
-		<select class="rounded border px-3 py-1 text-red-900">
-			<option value="2025-2026">2025–2026</option>
-			<option value="2024-2025">2024–2025</option>
-			<option value="2023-2024">2023–2024</option>
+	<!-- Dropdown aligned right -->
+	<div class="absolute top-1/2 right-0 -translate-y-1/2 pr-56">
+		<select class="rounded border px-3 py-1 text-red-900" bind:value={selectedYear}>
+			{#each Object.values(AcademicYear) as year (year)}
+				<option value={year}>{year}</option>
+			{/each}
 		</select>
 	</div>
 </div>
 
 <div class="h-cards">
-	{#each members as { name, role, email }}
+	{#each roles[selectedYear] as { name, role }}
 		<section class="card">
 			<img
 				src="https://placehold.net/avatar.svg"
@@ -64,7 +119,7 @@
 			/>
 			<h2 class="mb-0">{name}</h2>
 			<h3 class="mb-2 text-lg font-bold">{role}</h3>
-			<h3 class="">{email}</h3>
+			<h3 class="">{members[name].email}</h3>
 		</section>
 	{/each}
 </div>
@@ -86,12 +141,13 @@
 
 	.h-cards {
 		display: flex;
+		width: 100vw;
 		gap: 2rem;
 		overflow-x: auto;
 		padding: 4rem 4rem;
 		margin: -4rem 0;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
+		/*-ms-overflow-style: none;
+		scrollbar-width: none;*/
 	}
 
 	.h-cards .card {
@@ -99,6 +155,12 @@
 		scroll-snap-align: start;
 		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 		border-radius: 18px;
+	}
+	.h-cards > .card:first-child {
+		margin-left: 10rem;
+	}
+	.h-cards > .card:last-child {
+		margin-right: 10rem;
 	}
 
 	@media (min-width: 768px) {
