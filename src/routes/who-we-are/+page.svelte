@@ -4,9 +4,17 @@
 		Y25_26 = '2025/2026'
 	}
 
-	type Member = { name: string; email?: string };
+	interface Contact {
+		name: string;
+		email?: string;
+	}
 
-	const members: Record<string, Member> = Object.fromEntries(
+	interface Member {
+		name: string;
+		role: string;
+	}
+
+	const members: Record<string, Contact> = Object.fromEntries(
 		[
 			{ name: 'João Ramos', email: 'joao.ramos@nbi.ku.dk' },
 			{ name: 'Veronika Postgaard', email: 'rdz524@alumni.ku.dk' },
@@ -29,7 +37,7 @@
 		].map((member) => [member.name, member])
 	);
 
-	const roles: Record<AcademicYear, { name: string; role: string }[]> = {
+	const roles: Record<AcademicYear, Member[]> = {
 		[AcademicYear.Y25_26]: [
 			{ name: 'Bjarne Schümann', role: 'Head of Academic Committee' },
 			{ name: 'Christina Avram', role: 'Vice-Head of Social Committee' },
@@ -46,7 +54,6 @@
 			{ name: 'Tommaso Pasini', role: 'Vice-Head of Academic Committee' },
 			{ name: 'Veronika Postgaard', role: 'Treasurer' }
 		],
-
 		[AcademicYear.Y24_25]: [
 			{ name: 'Asger Viggo', role: 'Head of Public Relations' },
 			{ name: 'Bjarne Schümann', role: 'Vice-Head of Academic Committee' },
@@ -65,7 +72,7 @@
 	let selectedYear: AcademicYear = AcademicYear.Y25_26;
 </script>
 
-<h1>Who we are</h1>
+<h1 class="mt-100">Who we are</h1>
 
 <div class="cards mt-8 mr-auto mb-16 ml-auto">
 	<section class="card">
