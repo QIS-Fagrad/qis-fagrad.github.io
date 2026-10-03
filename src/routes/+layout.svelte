@@ -6,28 +6,35 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<script src="https://kit.fontawesome.com/a99e79e741.js" crossorigin="anonymous"></script>
 </svelte:head>
 
-<Nav />
-<main>
-	<div class="tape">WORK IN PROGRESS</div>
+<!-- <Nav /> -->
 
+<Nav></Nav>
+<main>
 	<slot />
 </main>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+	@import url('https://fonts.cdnfonts.com/css/palatino');
 
 	:global(body) {
 		background-color: #f9f9f9;
 	}
 
+	:root {
+		font-family: 'Google Sans', serif;
+		scroll-behavior: smooth;
+	}
+
 	main {
+		scroll-behavior: smooth;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		font-family: 'Google Sans', serif;
 		text-align: center;
 		color: #333;
 	}
@@ -51,30 +58,10 @@
 	:global(button:hover) {
 		background-color: #721417;
 	}
-	.tape {
-		position: fixed;
-		top: 45%;
-		left: -25%;
-		width: 150%;
-		padding: 1rem 0;
-		text-align: center;
 
-		background: repeating-linear-gradient(
-			45deg,
-			rgba(0, 0, 0, 0.25),
-			rgba(0, 0, 0, 0.25) 10px,
-			rgba(255, 235, 59, 0.35) 10px,
-			rgba(255, 235, 59, 0.35) 20px
-		);
-
-		color: #000;
-		font-size: 2rem;
-		letter-spacing: 0.3em;
-		font-family: monospace;
-		font-weight: bold;
-
-		transform: rotate(-10deg);
-		pointer-events: none;
-		z-index: 9999;
+	@media screen and (width <= 700px) {
+		:root {
+			font-size: 0.9em;
+		}
 	}
 </style>
