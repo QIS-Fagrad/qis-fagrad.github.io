@@ -1,15 +1,15 @@
 @import 'tailwindcss';
 
 @theme {
-	--color-*: initial;
+	/* --color-*: initial; */
 	--color-white: #ffffff;
 	--color-red: #901a1e;
 	--color-black: #000000;
 }
 
 @theme {
-	--animate-fade-in: fadeIn 0.2s ease-out;
-	--animate-fade-out: fadeOut 0.2s ease-out;
+	--animate-fade-in: fadeIn 0.3s ease-out;
+	--animate-fade-out: fadeOut 0.3s ease-out;
 	--animate-left-slide-in: leftSlideIn 0.2s ease-out;
 	--animate-left-slide-out: leftSlideOut 0.2s ease-out;
 

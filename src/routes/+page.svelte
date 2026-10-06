@@ -1,57 +1,76 @@
 <script lang="ts">
 	import full_logo from '$lib/assets/red_full_logo.webp';
-	import { ChevronsDown } from '@lucide/svelte';
+	import { CircleArrowDown, ArrowUp } from '@lucide/svelte';
 
-	const lorem_ipsum =
-		"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum";
-
-	interface HomeItem {
-		title: string;
-		text: string;
-		image_path: string;
-	}
-
-	const items: HomeItem[] = [
-		{
-			title: 'A title',
-			text: lorem_ipsum,
-			image_path: 'https://placehold.co/600x400'
-		},
-		{
-			title: 'Another title',
-			image_path: 'https://placehold.co/600x400',
-			text: lorem_ipsum
-		},
-		{
-			title: 'One more title',
-			image_path: 'https://placehold.co/600x400',
-			text: lorem_ipsum
-		}
-	];
+	let y: number = $state(0);
+	const cutoff = 50;
 </script>
 
-<div class="flex h-dvh items-center justify-center">
+<svelte:window bind:scrollY={y} />
+{#if y > cutoff}
+	<a
+		href="#top"
+		class="fixed right-0 bottom-0 m-5 animate-fade-in rounded-full bg-gray-200 p-1.5 text-red shadow-black"
+	>
+		<ArrowUp class="size-5" stroke-width="3" />
+	</a>
+{:else}
+	<a
+		class="absolute right-0 bottom-0 left-0 z-0 mx-auto mb-4 flex justify-center lg:mb-7"
+		href="#description"
+		title="arrow-down"
+	>
+		<CircleArrowDown class="size-8 text-red" />
+	</a>
+{/if}
+<div id="top" class="flex h-dvh items-center justify-center">
 	<img
 		class="w-11/12 md:w-3/4 lg:w-1/2"
 		src={full_logo}
 		alt="Quantum Information Science Student Association"
 	/>
-	<a class="absolute bottom-0 mb-4 content-center lg:mb-7" href="#description" title="arrow-down">
-		<ChevronsDown color="#901a1e" strokeWidth={3} class="size-8 lg:size-10" />
-	</a>
 </div>
-<div class=""></div>
 
 <div class="description" id="description"></div>
-{#each items as { image_path, title, text }}
-	<div class="img-text">
-		<div>
-			<h2>{title}</h2>
-			<p>{text}</p>
-		</div>
-		<img src={image_path} alt="img" />
+<!-- {#each items as { image_path, title, text }} -->
+<div class="img-text h-1/2 even:flex-row-reverse even:bg-red even:text-white">
+	<div class="w-full text-2xl">
+		<p>
+			We are an association of students from both the University of Copenhagen (KU) and the
+			Technical University of Denmark (DTU) for Quantum Information Science.
+		</p>
 	</div>
-{/each}
+	<img class="h-full" src="https://placehold.co/600x400" alt="img" />
+</div>
+
+<div class="img-text h-1/2 even:flex-row-reverse even:bg-red even:text-white">
+	<div class="w-full text-2xl">
+		<p>
+			We oversee different such as our Academic Committee and our Social Commitee. At these
+			committees we focus on providing students with <a class="font-bold text-red" href="/events"
+				>events and opportunities</a
+			> to engage in both fun and learning experiences. Have an idea for an event you would like to see
+			realised? Join our committees and will help with all organizational and funding concerns. The committees
+			are open to any student at DTU or at the KU's Faculty of Science to join.
+		</p>
+	</div>
+	<img class="h-full" src="https://placehold.co/600x400" alt="img" />
+</div>
+
+<div class="img-text h-1/2 even:flex-row-reverse even:bg-red even:text-white">
+	<div class="w-full text-2xl">
+		<p>
+			The association is overseen by the Fagråd (Student Council) from the Master of Science in
+			Quantum Information Science at both KU and DTU. You can read more about us <a
+				href="/about-us"
+				class="font-bold">here</a
+			>.
+		</p>
+	</div>
+	<img class="h-full" src="https://placehold.co/600x400" alt="img" />
+</div>
+
+<!-- {/each} -->
 
 <style>
 	.img-text {
@@ -60,29 +79,11 @@
 		align-items: center;
 		height: 50vh;
 	}
-	.img-text > img {
-		height: 100%;
-	}
-	.img-text > div {
-		width: 100%;
-	}
-	.img-text:nth-child(odd) {
-		color: white;
-		background-color: #901a1e;
-	}
-	.img-text:nth-child(even) {
-		flex-direction: row-reverse;
-	}
 	.img-text > div {
 		display: flex;
 		flex-direction: column;
 		padding: 2em 5em;
 		align-content: center;
-	}
-	.img-text h2 {
-		font-weight: bold;
-		font-size: 1.8em;
-		margin-bottom: 1em;
 	}
 	.img-text p {
 		font-size: 1.1em;

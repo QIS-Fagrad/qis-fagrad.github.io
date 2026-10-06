@@ -15,7 +15,6 @@
 </svelte:head>
 
 <!-- <Nav /> -->
-
 <Nav bind:open></Nav>
 <main class="h-dvh {open ? 'overflow-y-hidden' : ''}">
 	{@render children()}
@@ -27,5 +26,6 @@
 
 	:root {
 		font-family: 'Google Sans', serif;
+		height: 100dvh;
 	}
 </style>

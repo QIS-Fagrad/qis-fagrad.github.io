@@ -25,7 +25,7 @@
 	};
 </script>
 
-<nav class="fixed h-dvh w-dvw">
+<nav class="absolute grid h-dvh w-dvw grid-rows-[min-content_auto]">
 	<div class="flex h-min items-center justify-between bg-white px-5 py-3 lg:px-10 lg:py-5">
 		<button
 			class="m-1 h-min cursor-pointer items-center bg-transparent lg:hidden"
@@ -53,13 +53,18 @@
 			<img src={logo} alt="logo" /></a
 		>
 	</div>
-	<div class="relative h-full">
+	<div
+		class="relative top-0 bottom-0 z-50 h-full bg-white {open
+			? 'block'
+			: 'hidden'} animate-left-slide-in
+        "
+	>
 		<div
-			class="h-full w-full bg-white {open ? 'block' : 'hidden'} 
-            absolute
-            z-50
-            animate-left-slide-in
-            "
+			class="absolute
+                z-50
+                w-full
+                bg-white
+                "
 		>
 			<div class="col-span-2 col-start-1 row-start-2 flex w-full flex-col items-center lg:hidden">
 				{#each navItems as { href, label }}
@@ -67,8 +72,8 @@
 						onclick={close}
 						{href}
 						class="w-full cursor-pointer border-t py-6 text-center text-red last:border-b hover:bg-red
-                hover:text-white
-                {page.url.pathname === href ? 'font-bold' : ''}"
+                            hover:text-white
+                            {page.url.pathname === href ? 'font-bold' : ''}"
 						>{label}
 					</a>
 				{/each}
