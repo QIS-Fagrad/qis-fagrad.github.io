@@ -1,189 +1,78 @@
 <!-- Nav.svelte -->
 <script lang="ts">
 	import logo from '$lib/assets/red_logo.webp';
+	import { X, Menu } from '@lucide/svelte';
 
-	import { page } from '$app/state'; // replace $app/stores with $app/state
+	import { page } from '$app/state';
 	interface NavItem {
 		href: string;
 		label: string;
 	}
-	let open = false;
 	const navItems: NavItem[] = [
 		{ href: '/', label: 'Home' },
-		{ href: '/who-we-are', label: 'Who We Are' },
-		{ href: '/qis-handbook', label: 'QIS Handbook' },
 		{ href: '/events', label: 'Events' },
-		{ href: '/initiatives', label: 'Initiatives' },
-		{ href: '/project-catalogue', label: 'Project Catalogue' },
-		{ href: '/contact', label: 'Contact' }
+		{ href: '/about-us', label: 'About Us' },
+		{ href: '/contact-us', label: 'Contact Us' }
 	];
+
+	let { open = $bindable(false) }: { open: boolean } = $props();
+
+	const toggle_open = () => {
+		open = !open;
+	};
+	const close = () => {
+		open = false;
+	};
 </script>
 
-<nav class="nav">
-	<div>
+<nav class="fixed h-dvh w-dvw">
+	<div class="flex h-min items-center justify-between bg-white px-5 py-3 lg:px-10 lg:py-5">
 		<button
-			class:open
-			on:click={() => {
-				open = !open;
-			}}
-			aria-label="burguer-menu"
+			class="m-1 h-min cursor-pointer items-center bg-transparent lg:hidden"
+			onclick={toggle_open}
+			aria-label="open-burguer-menu"
 		>
-			<i class="fa-solid fa-bars"></i>
+			{#if open}
+				<X color="#901a1e" strokeWidth={2} />
+			{:else}
+				<Menu color="#901a1e" strokeWidth={2.5} />
+			{/if}
 		</button>
-		<button
-			class={!open ? 'open' : ''}
-			on:click={() => {
-				open = !open;
-			}}
-			aria-label="burguer-menu"
-		>
-			<i class="fa-solid fa-x"></i>
-		</button>
-		<div class="menu" class:open>
+		<div class="hidden w-min gap-10 lg:flex">
 			{#each navItems as { href, label }}
 				<a
-					on:click={() => (open = !open)}
+					onclick={close}
 					{href}
-					class="item"
-					class:selected={page.url.pathname === href}
+					class="h-min w-min cursor-pointer border-red p-2 text-center whitespace-nowrap text-red
+                {page.url.pathname === href ? 'border-b-2 font-bold' : ''}"
 					>{label}
 				</a>
 			{/each}
 		</div>
+		<a href="/" aria-label="home-logo" class="col-start-2 m-1 inline-flex h-10" onclick={close}>
+			<img src={logo} alt="logo" /></a
+		>
 	</div>
-	<a href="/" aria-label="home-logo">
-		<img class="h-15" class:opacity-0={page.url.pathname === '/'} src={logo} alt="logo" /></a
-	>
+	<div class="relative h-full">
+		<div
+			class="h-full w-full bg-white {open ? 'block' : 'hidden'} 
+            absolute
+            z-50
+            animate-left-slide-in
+            "
+		>
+			<div class="col-span-2 col-start-1 row-start-2 flex w-full flex-col items-center lg:hidden">
+				{#each navItems as { href, label }}
+					<a
+						onclick={close}
+						{href}
+						class="w-full cursor-pointer border-t py-6 text-center text-red last:border-b hover:bg-red
+                hover:text-white
+                {page.url.pathname === href ? 'font-bold' : ''}"
+						>{label}
+					</a>
+				{/each}
+			</div>
+		</div>
+	</div>
 </nav>
-
-<style>
-	.nav {
-		font-size: 1.2em;
-		padding: 0.5em;
-		position: absolute;
-		top: 0;
-		height: min-content;
-		width: 100vw;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.nav button {
-		display: None;
-	}
-	.menu {
-		display: flex;
-		justify-content: space-between;
-
-		align-items: center;
-		gap: 0.5em;
-	}
-
-	a.item {
-		display: inline-block;
-		padding: 0 1.5em;
-		color: #901a1e;
-		background-color: #f9f9f9;
-		height: 100%;
-		align-items: stretch;
-
-		border-radius: 2em;
-		border: 0.1em solid #901a1e;
-
-		transition: color 0.6s ease;
-		transition: background-color 0.6s ease;
-	}
-	a.item.selected {
-		font-weight: bold;
-		border-width: 0.15em;
-	}
-
-	a.item:hover {
-		color: #f9f9f9;
-		background-color: #901a1e;
-	}
-
-	.nav button {
-		background-color: transparent;
-		color: #901a1e;
-		padding: auto 0.3em;
-		height: 100%;
-	}
-	.nav button > * {
-		background-color: transparent;
-		height: 100%;
-	}
-
-	@media screen and (width <= 1400px) {
-		.nav {
-			height: 7vh;
-		}
-		.nav button {
-			display: inline-block;
-			animation: fadeIn 0.2s ease-out;
-		}
-		.nav button.open {
-			display: none;
-			animation: fadeOut 0.2s ease-out;
-		}
-		.nav .menu {
-			display: none;
-			gap: 0;
-		}
-
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-			to {
-				opacity: 1;
-			}
-		}
-		@keyframes fadeOut {
-			from {
-				opacity: 0;
-			}
-			to {
-				opacity: 1;
-				display: none;
-			}
-		}
-		@keyframes slideInLeft {
-			from {
-				transform: translateX(-100%);
-				opacity: 0;
-			}
-			to {
-				transform: translateY(0);
-				opacity: 1;
-			}
-		}
-		@keyframes slideOutLeft {
-			from {
-				transform: translateX(0);
-				opacity: 1;
-			}
-			to {
-				transform: translateX(-100%);
-				opacity: 0;
-			}
-		}
-		.nav .menu.open {
-			position: absolute;
-			left: 0;
-			top: 7vh;
-
-			display: grid;
-			grid-template-columns: auto;
-			border: 0.1em solid #901a1e;
-
-			animation: slideInLeft 0.2s ease-out;
-		}
-		.nav .menu .item {
-			border: none;
-			border-radius: 0;
-			padding: 0.5em 1.5em;
-		}
-	}
-</style>
