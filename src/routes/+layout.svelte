@@ -16,16 +16,17 @@
 
 <!-- <Nav /> -->
 <Nav bind:open></Nav>
-<main class="h-dvh {open ? 'overflow-y-hidden' : ''}">
+<main class="h-dvh scroll-smooth {open ? 'overflow-y-hidden' : ''}">
 	{@render children()}
 </main>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
-	@import url('https://fonts.cdnfonts.com/css/palatino');
 
 	:root {
 		font-family: 'Google Sans', serif;
 		height: 100dvh;
+		overflow-y: auto;
+		scroll-behavior: smooth !important;
 	}
 </style>
