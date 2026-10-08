@@ -1,1 +1,1 @@
-[](./supplementary/agents.jpg)
+![](./supplementary/agents.jpg)
