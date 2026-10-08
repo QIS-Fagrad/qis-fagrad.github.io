@@ -4,6 +4,14 @@
 	import { CircleArrowDown, ArrowUp } from '@lucide/svelte';
 
 	import { scrollTo, scrollRef } from 'svelte-scrolling';
+	import { cubicInOut } from 'svelte/easing';
+	import { setGlobalOptions } from 'svelte-scrolling';
+
+	setGlobalOptions({
+		duration: 300,
+		offset: 0,
+		easing: cubicInOut
+	});
 
 	let y: number = $state(0);
 	const cutoff = 50;
