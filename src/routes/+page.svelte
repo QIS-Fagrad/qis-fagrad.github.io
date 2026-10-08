@@ -1,11 +1,40 @@
 <script lang="ts">
 	import full_logo from '$lib/assets/red_full_logo.webp';
+	import Beamer from '$lib/components/Beamer.svelte';
 	import { CircleArrowDown, ArrowUp } from '@lucide/svelte';
 
-	import { scrollTo, scrollRef, scrollTop } from 'svelte-scrolling';
+	import { scrollTo, scrollRef } from 'svelte-scrolling';
 
 	let y: number = $state(0);
 	const cutoff = 50;
+
+	const items = [
+		{
+			image: 'https://placehold.co/600x400',
+			content: `
+            We are an association of students from both the University of Copenhagen (KU)
+            and the Technical University of Denmark (DTU) for Quantum Information Science.
+		    `
+		},
+
+		{
+			image: 'https://placehold.co/600x400',
+			content: `
+            We oversee an Academic Committee, a Social Commitee and other initiatives. At these committees
+            we focus on providing students with events and opportunities to engage in both fun and learning experiences.
+            Have an idea for an event you would like to see realised? Join our committees and will help with all
+            organizational and funding concerns. The committees are open to any student at DTU or at KU's Faculty of Science.
+		    `
+		},
+
+		{
+			image: 'https://placehold.co/600x400',
+			content: `
+            The association is overseen by the Fagråd (Student Council) from the Master of Science
+            in Quantum Information Science at both KU and DTU. You can read more about us here.
+		    `
+		}
+	];
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -34,46 +63,11 @@
 </div>
 
 <div class="h-screen" use:scrollRef={'content'}>
-	<!-- {#each items as { image_path, title, text }} -->
-	<div
-		class="flex flex-col items-center gap-5 p-5 lg:h-1/2 lg:flex-row lg:p-10 lg:even:flex-row-reverse"
-	>
-		<div class="text-lg lg:text-2xl">
-			<p>
-				We are an association of students from both the University of Copenhagen (KU) and the
-				Technical University of Denmark (DTU) for Quantum Information Science.
-			</p>
-		</div>
-		<img class="" src="https://placehold.co/600x400" alt="img" />
-	</div>
-
-	<div
-		class="flex flex-col items-center justify-center gap-5 bg-red p-5 text-white sm:flex-row sm:p-10 lg:h-1/2 lg:even:flex-row-reverse"
-	>
-		<p class="h-full w-full content-center text-lg lg:text-2xl">
-			We oversee an Academic Committee, a Social Commitee and other initiatives. At these committees
-			we focus on providing students with <a class="font-bold" href="/events"
-				>events and opportunities</a
-			> to engage in both fun and learning experiences. Have an idea for an event you would like to see
-			realised? Join our committees and will help with all organizational and funding concerns. The committees
-			are open to any student at DTU or at KU's Faculty of Science.
-		</p>
-		<img class="w-full" src="https://placehold.co/600x400" alt="img" />
-	</div>
-	<div
-		class="flex flex-col items-center gap-5 p-5 lg:h-1/2 lg:flex-row lg:gap-10 lg:p-10 lg:even:flex-row-reverse"
-	>
-		<div class="text-lg lg:text-2xl">
-			<p>
-				The association is overseen by the QIS Fagråd, the student council from the Master of
-				Science in Quantum Information Science at both KU and DTU. You can read more about us <a
-					href="/about-us"
-					class="font-bold">here</a
-				>.
-			</p>
-		</div>
-		<img class="" src="https://placehold.co/600x400" alt="img" />
-	</div>
+	{#each items as { image, content }}
+		<Beamer img={image}>
+			{content}
+		</Beamer>
+	{/each}
 </div>
 
 <!-- {/each} -->

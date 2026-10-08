@@ -25,7 +25,7 @@
 	};
 </script>
 
-<nav class="absolute grid h-dvh w-dvw grid-rows-[min-content_auto]">
+<nav class="absolute grid h-dvh w-full grid-rows-[min-content_auto]">
 	<div class="flex h-min items-center justify-between bg-white px-5 py-3 lg:px-10 lg:py-5">
 		<button
 			class="m-1 h-min cursor-pointer items-center bg-transparent lg:hidden"
