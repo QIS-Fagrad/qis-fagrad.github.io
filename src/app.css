@@ -1,1 +1,59 @@
 @import 'tailwindcss';
+
+@theme {
+	--color-*: initial;
+	--color-white: #ffffff;
+	--color-red: #901a1e;
+	--color-black: #000000;
+}
+
+@theme {
+	--breakpoint-xs: 30rem;
+	--breakpoint-2xl: 100rem;
+	--breakpoint-3xl: 120rem;
+}
+
+@theme {
+	--animate-fade-in: fadeIn 0.3s ease-out;
+	--animate-fade-out: fadeOut 0.3s ease-out;
+	--animate-left-slide-in: leftSlideIn 0.2s ease-out;
+	--animate-left-slide-out: leftSlideOut 0.2s ease-out;
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	@keyframes fadeOut {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+			display: none;
+		}
+	}
+	@keyframes leftSlideIn {
+		from {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+	@keyframes leftSlideOut {
+		from {
+			transform: translateX(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+	}
+}

@@ -1,135 +1,88 @@
 <script lang="ts">
-	import logo from '$lib/assets/red_logo.webp';
 	import full_logo from '$lib/assets/red_full_logo.webp';
+	import Beamer from '$lib/components/Beamer.svelte';
+	import { CircleArrowDown, ArrowUp } from '@lucide/svelte';
 
-	const lorem_ipsum =
-		"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum";
+	import { scrollTo, scrollRef } from 'svelte-scrolling';
+	import { cubicInOut } from 'svelte/easing';
+	import { setGlobalOptions } from 'svelte-scrolling';
 
-	interface HomeItem {
-		title: string;
-		text: string;
-		image_path: string;
-	}
+	setGlobalOptions({
+		duration: 500,
+		offset: 0,
+		easing: cubicInOut
+	});
 
-	const items: HomeItem[] = [
+	let scrollY: number = $state(0);
+	let innerHeight: number = $state(0);
+	const cutoff = $derived(innerHeight * 0.9);
+
+	const items = [
 		{
-			title: 'A title',
-			text: lorem_ipsum,
-			image_path: 'https://placehold.co/600x400'
+			imgs: [
+				'https://placehold.co/1920x1080',
+				'https://placehold.co/1920x1080',
+				'https://placehold.co/500x500',
+				'https://placehold.co/1920x1080'
+			],
+			content: `
+            We are an association of students from both the University of Copenhagen (KU)
+            and the Technical University of Denmark (DTU) for Quantum Information Science.
+            The association is overseen by the *QIS Fagråd*, the Student Council from the Master of Science
+            in Quantum Information Science at both KU and DTU. Read more about us [here](/about-us).
+		    `
 		},
+
 		{
-			title: 'Another title',
-			image_path: 'https://placehold.co/600x400',
-			text: lorem_ipsum
-		},
-		{
-			title: 'One more title',
-			image_path: 'https://placehold.co/600x400',
-			text: lorem_ipsum
+			imgs: ['https://placehold.co/1920x1080'],
+			content: `
+            We oversee an *Academic Committee*, a *Social Commitee* and other initiatives. At these committees
+            we focus on providing students with [events and opportunities](/events) to engage in both fun and learning experiences.
+            Have an idea for an event you would like to see realised? Join our committees and will help with all
+            organizational and funding concerns. The committees are open to any student at DTU or at KU's Faculty of Science.
+		    `
 		}
 	];
+
+	function render_md(text: string) {
+		return text
+			.replace(/\[(.+?)\]\((.+?)\)/g, "<a class='underline' href='$2'>$1</a>")
+			.replace(/_(.+?)_/g, '<i>$1</i>')
+			.replace(/\*(.+?)\*/g, '<b>$1</b>');
+	}
 </script>
 
-<div class="welcome">
+<svelte:window bind:scrollY bind:innerHeight />
+{#if scrollY > cutoff}
+	<button
+		use:scrollTo={'top'}
+		class="bg-gray-200 fixed right-0 bottom-0 z-40 m-5 animate-fade-in rounded-full p-1.5 text-red shadow-black"
+	>
+		<ArrowUp class="size-5" stroke-width="3" />
+	</button>
+{:else}
+	<button
+		class="absolute right-0 bottom-0 left-0 z-40 mx-auto mb-4 flex justify-center lg:mb-7"
+		use:scrollTo={'content'}
+		title="arrow-down"
+	>
+		<CircleArrowDown class="size-8 text-red" />
+	</button>
+{/if}
+<div use:scrollRef={'top'} class="flex h-dvh items-center justify-center">
 	<img
-		class="w-11/12 md:w-1/2"
+		class="w-11/12 md:w-3/4 lg:w-1/2"
 		src={full_logo}
 		alt="Quantum Information Science Student Association"
 	/>
-	<a class="arrow" href="#description" title="arrow-down">
-		<i class="fa-solid fa-circle-down"></i>
-	</a>
 </div>
 
-<div class="description" id="description"></div>
-{#each items as { image_path, title, text }}
-	<div class="img-text">
-		<div>
-			<h2>{title}</h2>
-			<p>{text}</p>
-		</div>
-		<img src={image_path} alt="img" />
-	</div>
-{/each}
+<div use:scrollRef={'content'} id="content">
+	{#each items as { imgs, content }}
+		<Beamer {imgs}>
+			{@html render_md(content)}
+		</Beamer>
+	{/each}
+</div>
 
-<style>
-	.welcome {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		height: 100vh;
-	}
-	.welcome > .arrow {
-		font-size: 2em;
-		align-content: center;
-		position: absolute;
-		bottom: 0;
-		color: #901a1e;
-	}
-	.img-text {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: 50vh;
-	}
-	.img-text > img {
-		height: 100%;
-	}
-	.img-text > div {
-		width: 100%;
-	}
-	.img-text:nth-child(odd) {
-		color: white;
-		background-color: #901a1e;
-	}
-	.img-text:nth-child(even) {
-		flex-direction: row-reverse;
-	}
-	.img-text > div {
-		display: flex;
-		flex-direction: column;
-		padding: 2em 5em;
-		align-content: center;
-	}
-	.img-text h2 {
-		font-weight: bold;
-		font-size: 1.8em;
-		margin-bottom: 1em;
-	}
-	.img-text p {
-		font-size: 1.1rem;
-	}
-	@media screen and (height <= 800px) {
-		.img-text {
-			height: 100vh;
-		}
-	}
-	@media screen and (width <= 1400px) {
-		.img-text > img {
-			height: auto;
-			width: 40vw;
-			padding: 2em;
-		}
-	}
-	@media screen and (width <= 1000px) {
-		.img-text:nth-child(odd),
-		.img-text:nth-child(even) {
-			display: flex;
-			flex-direction: column;
-		}
-		.img-text {
-			justify-content: space-between;
-			align-items: center;
-			height: min-content;
-			padding: 2em auto;
-		}
-		.img-text > img {
-			width: 100vw;
-			padding: 0;
-		}
-		.img-text > div {
-			padding: 1em 1em;
-		}
-	}
-</style>
+<!-- {/each} -->

@@ -108,7 +108,7 @@
 
 	<!-- Dropdown aligned right -->
 	<div class="absolute top-1/2 right-0 -translate-y-1/2 pr-56">
-		<select class="rounded border px-3 py-1 text-red-900" bind:value={selectedYear}>
+		<select class="text-red-900 rounded border px-3 py-1" bind:value={selectedYear}>
 			{#each Object.values(AcademicYear) as year (year)}
 				<option value={year}>{year}</option>
 			{/each}
