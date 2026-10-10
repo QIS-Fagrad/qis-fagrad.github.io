@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import Nav from '$lib/components/Nav.svelte';
 	import type { Snippet } from 'svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children }: { children: Snippet } = $props();
 
@@ -18,6 +19,7 @@
 <Nav bind:open></Nav>
 <main class="h-dvh scroll-smooth {open ? 'overflow-y-hidden' : ''}">
 	{@render children()}
+	<Footer />
 </main>
 
 <style>

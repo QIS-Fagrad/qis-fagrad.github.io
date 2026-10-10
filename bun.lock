@@ -5,6 +5,7 @@
     "": {
       "name": "qis-fagraad",
       "dependencies": {
+        "@boxicons/svelte": "^1.0.1",
         "@fortawesome/svelte-fontawesome": "^0.2.4",
         "@lucide/svelte": "^1.52.0",
         "svelte-scrolling": "^1.5.1",
@@ -32,6 +33,8 @@
     },
   },
   "packages": {
+    "@boxicons/svelte": ["@boxicons/svelte@1.0.1", "", { "peerDependencies": { "svelte": ">=4.0.0" } }, "sha512-ePh2VTkxnL8LqhfAUiMaGnm+ogL9NeZsTMdbISl6CxXS1Iim2AQme+OSjMZJR4gkYeuo918k+PeQBzFZFG+Yzg=="],
+
     "@emnapi/core": ["@emnapi/core@1.8.1", "", { "dependencies": { "@emnapi/wasi-threads": "1.1.0", "tslib": "^2.4.0" } }, "sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg=="],
 
     "@emnapi/runtime": ["@emnapi/runtime@1.8.1", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-mehfKSMWjjNol8659Z8KxEMrdSJDDot5SXMq00dM8BN4o+CLNXQ0xH2V7EchNHV4RmbZLmmPdEaXZc5H2FXmDg=="],

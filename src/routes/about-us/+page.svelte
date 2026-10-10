@@ -1,3 +1,3 @@
 <div class="flex h-dvh items-center justify-center">
-	<h1 class="text-5xl text-red">About Us</h1>
+	<h1 class="text-5xl text-red">Fagråd</h1>
 </div>
