@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="flex flex-col items-center justify-between gap-10 p-10 text-center even:bg-red even:text-white lg:h-1/2 lg:flex-row lg:gap-15 lg:p-15 lg:text-left lg:even:flex-row-reverse lg:even:text-right"
+	class="flex flex-col items-center justify-between gap-10 p-5 text-center md:flex-row md:text-left md:even:flex-row-reverse md:even:text-right lg:gap-15 lg:p-15"
 >
 	{#if imgs !== null}
 		<Caroussel {imgs} />

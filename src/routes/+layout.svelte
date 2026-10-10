@@ -27,8 +27,5 @@
 
 	:root {
 		font-family: 'Google Sans', serif;
-		height: 100dvh;
-		overflow-y: auto;
-		scroll-behavior: smooth !important;
 	}
 </style>
